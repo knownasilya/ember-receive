@@ -68,11 +68,16 @@ And consume:
 * first parameter - Name of the source where the receiver can pick it up, this is required but doesn't have to be unique. String.
 * second parameter - The data to pass to the source. This can be anything, primitive, object, array or a hash of contextual components.
 * `blockTracking` - Prevent the receiver from sending back anything. Boolean, defaults to `false`.
+* `autoPassBack` - Makes the receiver pass back everything in their yield automatically. Only works in 'single' mode. Boolean, defaults to `false`.
 
 ### `receive-for`
 
 * first parameter - Name of the source to reeive data from. Required.
 * first yield - The data that is coming from the source.
+* `mode` - How the receiver handles that data source. String, defaults to 'single'.
+  - 'single' - Only one data object at a time, the yielded item is the data object.
+  - 'multiple' - Mutiple items at a time. The yielded item is an array of all of the raw
+    items, i.e. `{ data: <the data>, id: <sender id - unless `blockTracking`>, passBack: <from `autoPassBack`> }`.
 * second yield - The send hash, which has one component at the moment:
   - `back` - The teleport back to sender, used in block form and has no parameters/attributes.
     This will not send back if the sender has set `blockTracking=true`.
