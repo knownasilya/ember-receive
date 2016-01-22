@@ -1,7 +1,7 @@
 {
   "name": "ember-receive",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "description": "A teleporter there and back again!",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -12,11 +12,11 @@
     "test": "ember try:testall",
     "quick-test": "ember try default"
   },
-  "repository": "",
+  "repository": "https://github.com/knownasilya/ember-receive",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Ilya Radchenko <ilya@burstcreations.com>",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
@@ -38,7 +38,10 @@
     "ember-try": "~0.0.8"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "teleport",
+    "portal",
+    "contextual components"
   ],
   "dependencies": {
     "ember-cli-htmlbars": "^1.0.1",
