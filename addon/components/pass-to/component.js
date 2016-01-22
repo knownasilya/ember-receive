@@ -21,12 +21,19 @@ let PassTo = Ember.Component.extend({
 
     if (to && data) {
       let hash = { data };
+      let key = `data.${to}`;
+      let items = service.get(key);
 
       if (!blockTracking) {
         hash.id = this.get('elementId');
       }
 
-      service.set(`data.${to}`, hash);
+      if (!items) {
+        items = Ember.A();
+        service.set(key, items);
+      }
+
+      items.pushObject(hash);
     }
   }
 });

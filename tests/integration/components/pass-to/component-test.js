@@ -4,7 +4,12 @@ import wait from 'ember-test-helpers/wait';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('pass-to', 'Integration | Component | pass to', {
-  integration: true
+  integration: true,
+
+  beforeEach() {
+    this.inject.service('receivePass');
+    this.receivePass.clearData();
+  }
 });
 
 test('it renders', function(assert) {
@@ -69,5 +74,27 @@ test('multiple receives', function (assert) {
     let joined = text ? text.split(' ').map(item => item.trim()).join('') : undefined;
 
     assert.equal(joined, 'WayneWayne');
+  });
+});
+
+test('multiple fors in one receive', function (assert) {
+  this.set('fors', ['area51', 'outer-limits']);
+
+  this.render(hbs`
+    {{pass-to 'area51' 'a'}}
+    {{pass-to 'outer-limits' 'b'}}
+
+    {{#receive-for fors mode='multiple' as |data|}}
+      {{#each data as |datum|}}
+        {{datum.data}}
+      {{/each}}
+    {{/receive-for}}
+  `);
+
+  return wait().then(() => {
+    let text = this.$().text();
+    let joined = text ? text.split(' ').map(item => item.trim()).join('') : undefined;
+
+    assert.equal(joined, 'ab');
   });
 });
