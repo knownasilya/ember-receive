@@ -8,8 +8,6 @@ moduleForComponent('pass-to', 'Integration | Component | pass to', {
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });"
   this.set('data', { name: 'Wayne' });
 
   this.render(hbs`
@@ -48,5 +46,28 @@ test('inverse', function (assert) {
   })
   .then(() => {
     assert.equal(Ember.$('.galaxy').text().trim(), 'test');
+  });
+});
+
+test('multiple receives', function (assert) {
+  this.set('data', { name: 'Wayne' });
+
+  this.render(hbs`
+    {{pass-to 'area51' data}}
+
+    {{#receive-for 'area51' as |data|}}
+      {{data.name}}
+    {{/receive-for}}
+
+    {{#receive-for 'area51' as |data|}}
+      {{data.name}}
+    {{/receive-for}}
+  `);
+
+  return wait().then(() => {
+    let text = this.$().text();
+    let joined = text ? text.split(' ').map(item => item.trim()).join('') : undefined;
+
+    assert.equal(joined, 'WayneWayne');
   });
 });
