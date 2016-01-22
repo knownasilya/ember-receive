@@ -1,5 +1,13 @@
 # ember-receive
 
+It's like a teleporter there and back again!
+
+![Ember Version][ember-version]
+
+```no-highlight
+ember install ember-receive
+```
+
 There are many uses for `ember-receive`, but one of the main uses is to unblock blocked components. Let me show you.
 
 ```hbs
@@ -46,3 +54,6 @@ And consume:
     {{/send.back}}
   {{/if}}
 {{/receive-for}}
+
+
+[ember-version]: https://embadge.io/v1/badge.svg?start=2.3.0
