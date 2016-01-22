@@ -2,6 +2,9 @@
 
 It's like a teleporter there and back again!
 
+[![NPM][npm-badge-img]][npm-badge-link]
+[![Build Status][travis-badge]][travis-badge-url]
+[![Ember Observer Score][ember-observer-badge]][ember-observer-url]  
 ![Ember Version][ember-version]
 
 ```no-highlight
@@ -72,4 +75,10 @@ And consume:
   - `back` - The teleport back to sender, used in block form and has no parameters/attributes.
     This will not send back if the sender has set `blockTracking=true`.
 
+[npm-badge-img]: https://badge.fury.io/js/ember-receive.svg
+[npm-badge-link]: http://badge.fury.io/js/ember-receive
+[travis-badge]: https://travis-ci.org/knownasilya/ember-receive.svg
+[travis-badge-url]: https://travis-ci.org/knownasilya/ember-receive
+[ember-observer-badge]: http://emberobserver.com/badges/ember-receive.svg
+[ember-observer-url]: http://emberobserver.com/addons/ember-receive
 [ember-version]: https://embadge.io/v1/badge.svg?start=2.3.0
