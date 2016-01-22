@@ -46,16 +46,13 @@ And consume:
 
 ```hbs
 {{#receive-for 'outside-area' as |ui send|}}
-  <!-- check is necessary or you get unknown helper error -->
-  {{#if ui.test}}
-    <!-- everything inside will be rendered where the data came from -->
-    {{#send.back}}
-      {{#ui.test something=data}}
-        Block data
-        {{different-component}}
-      {{/ui.test}}
-    {{/send.back}}
-  {{/if}}
+  <!-- everything inside will be rendered where the data came from -->
+  {{#send.back}}
+    {{#ui.test something=data}}
+      Block data
+      {{different-component}}
+    {{/ui.test}}
+  {{/send.back}}
 {{/receive-for}}
 ```
 
@@ -74,6 +71,16 @@ And consume:
 * second yield - The send hash, which has one component at the moment:
   - `back` - The teleport back to sender, used in block form and has no parameters/attributes.
     This will not send back if the sender has set `blockTracking=true`.
+
+Can also be used with an `else` block:
+
+```hbs
+{{#receive-for 'outer-rim' as |spaceships|}}
+  <!-- spaceships here -->
+{{else}}
+  Lightspeed is too slow
+{{/receive-for}}
+```
 
 [npm-badge-img]: https://badge.fury.io/js/ember-receive.svg
 [npm-badge-link]: http://badge.fury.io/js/ember-receive

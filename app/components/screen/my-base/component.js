@@ -1,1 +1,0 @@
-export { default } from 'ember-receive/components/screen/my-base/component';

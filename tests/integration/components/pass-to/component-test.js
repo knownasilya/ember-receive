@@ -26,3 +26,27 @@ test('it renders', function(assert) {
     assert.equal(Ember.$('.zone').text().trim(), 'Wayne');
   });
 });
+
+test('inverse', function (assert) {
+  this.render(hbs`
+    {{pass-to 'outer-rim' data}}
+
+    {{#receive-for 'outer-rim' as |data|}}
+      <div class="galaxy">
+        {{data}}
+      </div>
+    {{else}}
+      <div class="galaxy">
+        Nothing
+      </div>
+    {{/receive-for}}
+  `);
+
+  return wait().then(() => {
+    assert.equal(Ember.$('.galaxy').text().trim(), 'Nothing');
+    this.set('data', 'test');
+  })
+  .then(() => {
+    assert.equal(Ember.$('.galaxy').text().trim(), 'test');
+  });
+});

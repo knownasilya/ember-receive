@@ -16,6 +16,7 @@ test('it renders', function(assert) {
   // Template block usage:"
   this.render(hbs`
     {{#receive-for}}
+    {{else}}
       template block text
     {{/receive-for}}
   `);

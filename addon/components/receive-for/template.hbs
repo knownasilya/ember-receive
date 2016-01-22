@@ -1,1 +1,5 @@
-{{yield data.data (hash back=(component 'portal-content' for=data.id))}}
+{{#if data}}
+  {{yield data.data (hash back=(component 'portal-content' for=data.id))}}
+{{else}}
+  {{yield to='inverse'}}
+{{/if}}
