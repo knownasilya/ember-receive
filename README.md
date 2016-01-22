@@ -54,6 +54,6 @@ And consume:
     {{/send.back}}
   {{/if}}
 {{/receive-for}}
-
+```
 
 [ember-version]: https://embadge.io/v1/badge.svg?start=2.3.0
