@@ -11,26 +11,32 @@ It's like a teleporter there and back again!
 ember install ember-receive
 ```
 
-There are many uses for `ember-receive`, but one of the main uses is to unblock blocked components. Let me show you.
+There are many uses for `ember-receive`, but one of the main uses is to unblock blocked components.  
+Let me show you with a contrived example:
 
 ```hbs
-<!-- app/components/sidebar/template.hbs -->
+<!-- app/users/index/template.hbs -->
 
-{{#some-component data=model as |result|}}
+{{#user-list filter=(route-action 'filterBy' 'type' 'admin') users=model as |users|}}
   <!--
-    You must use `result` here, or somehow pass it elsewhere
+    You must use `result` here, or somehow pass it elsewhere.
     ember-receive to the rescue!
   -->
-  {{pass-to 'outside-area' result}}
-{{/some-component}}
+  {{pass-to 'dash-widgets' users}}
+{{/user-list}}
 ```
 
 In another place:
 ```hbs
-<!-- app/application/template.hbs -->
-
-{{#receive-for 'outside-area' as |result send|}}
-  <!-- do something with result -->
+<!-- app/index/template.hbs -->
+{{#receive-for 'dash-widgets' as |users send|}}
+  <!-- filtered users with additional data -->
+  {{most-active-users users=users}}
+  {{new-users users=users}}
+{{else}}
+  <!-- unfiltered users -->
+  {{most-active-users users=allUsers}}
+  {{new-users users=allUsers}}
 {{/receive-for}}
 ```
 
