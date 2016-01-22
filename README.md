@@ -82,6 +82,10 @@ Can also be used with an `else` block:
 {{/receive-for}}
 ```
 
+## History
+
+This is based on the work in [ember-portal] (without which this wouldn't be possible) and the experiment to [yield portals] which opened new possibilities for me.
+
 [npm-badge-img]: https://badge.fury.io/js/ember-receive.svg
 [npm-badge-link]: http://badge.fury.io/js/ember-receive
 [travis-badge]: https://travis-ci.org/knownasilya/ember-receive.svg
@@ -89,3 +93,5 @@ Can also be used with an `else` block:
 [ember-observer-badge]: http://emberobserver.com/badges/ember-receive.svg
 [ember-observer-url]: http://emberobserver.com/addons/ember-receive
 [ember-version]: https://embadge.io/v1/badge.svg?start=2.3.0
+[ember-portal]: https://github.com/minutebase/ember-portal
+[yield portals]: https://github.com/knownasilya/ember-yielded-portals
