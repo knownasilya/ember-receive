@@ -6,8 +6,10 @@ There are many uses for `ember-receive`, but one of the main uses is to unblock 
 <!-- app/components/sidebar/template.hbs -->
 
 {{#some-component data=model as |result|}}
-  <!-- You must use `result` here, or somehow pass it elsewhere -->
-  <! -- ember-receive to the rescue! -->
+  <!--
+    You must use `result` here, or somehow pass it elsewhere
+    ember-receive to the rescue!
+  -->
   {{pass-to 'outside-area' result}}
 {{/some-component}}
 ```
