@@ -1,6 +1,12 @@
 {{#if data}}
   {{#if singleMode}}
-    {{yield data.lastObject.data (hash back=(component 'portal-content' for=data.id))}}
+    {{#if data.lastObject.passBack}}
+      {{#portal-content for=data.lastObject.id}}
+        {{yield data.lastObject.data}}
+      {{/portal-content}}
+    {{else}}
+      {{yield data.lastObject.data (hash back=(component 'portal-content' for=data.id))}}
+    {{/if}}
   {{else}}
     {{yield data (hash back=(component 'portal-content' for=data.id))}}
   {{/if}}

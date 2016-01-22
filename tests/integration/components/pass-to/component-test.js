@@ -30,6 +30,28 @@ test('it renders', function(assert) {
   });
 });
 
+test('autoPassBack', function(assert) {
+  this.set('data', { name: 'Wayne' });
+
+  this.render(hbs`
+    <div class="nowhere">
+      {{pass-to 'area51' data autoPassBack=true}}
+    </div>
+
+    {{#receive-for 'area51' as |data|}}
+      <div class="zone">
+        {{data.name}}
+      </div>
+    {{/receive-for}}
+  `);
+
+  return wait().then(() => {
+    assert.equal(this.$('.nowhere').text().trim(), 'Wayne');
+    // TODO: yielding to the block doesn't remove it from the dom
+    assert.equal(this.$('.zone').text().trim(), 'Wayne');
+  });
+});
+
 test('inverse', function (assert) {
   this.render(hbs`
     {{pass-to 'outer-rim' data}}

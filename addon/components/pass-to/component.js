@@ -7,6 +7,7 @@ let PassTo = Ember.Component.extend({
   layout,
   receivePass: inject.service(),
   blockTracking: false,
+  autoPassBack: false,
 
   didReceiveAttrs() {
     var to = this.get('to');
@@ -18,9 +19,10 @@ let PassTo = Ember.Component.extend({
   sendToService(to, data) {
     var service = this.get('receivePass');
     var blockTracking = this.get('blockTracking');
+    var autoPassBack = this.get('autoPassBack');
 
     if (to && data) {
-      let hash = { data };
+      let hash = { data, passBack: autoPassBack };
       let key = `data.${to}`;
       let items = service.get(key);
 
