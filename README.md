@@ -56,4 +56,20 @@ And consume:
 {{/receive-for}}
 ```
 
+## API
+
+### `pass-to`
+
+* first parameter - Name of the source where the receiver can pick it up, this is required but doesn't have to be unique. String.
+* second parameter - The data to pass to the source. This can be anything, primitive, object, array or a hash of contextual components.
+* `blockTracking` - Prevent the receiver from sending back anything. Boolean, defaults to `false`.
+
+### `receive-for`
+
+* first parameter - Name of the source to reeive data from. Required.
+* first yield - The data that is coming from the source.
+* second yield - The send hash, which has one component at the moment:
+  - `back` - The teleport back to sender, used in block form and has no parameters/attributes.
+    This will not send back if the sender has set `blockTracking=true`.
+
 [ember-version]: https://embadge.io/v1/badge.svg?start=2.3.0

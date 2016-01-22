@@ -1,2 +1,4 @@
 {{yield}}
-{{portal-for name=elementId}}
+{{#unless blockTracking}}
+  {{portal-for name=elementId}}
+{{/unless}}

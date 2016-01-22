@@ -4,7 +4,7 @@
 
 Passed Here:<br/>
 <input type="text" oninput={{action (mut hello) value="currentTarget.value"}}>
-{{pass-to 'area51' (hash test=(component 'my-comp' first=hello))}}
+{{pass-to 'area51' (hash test=(component 'my-comp' first=hello)) blockTracking=true}}
 
 <hr/>
 
@@ -12,7 +12,8 @@ Received Here:<br/>
 {{#receive-for 'area51' as |data send|}}
   {{#if data.test}}
     {{#send.back}}
-      {{data.test last='Dole'}}
+      {{data.test last='Inner'}}
     {{/send.back}}
+    {{data.test last='Outer'}}
   {{/if}}
 {{/receive-for}}
