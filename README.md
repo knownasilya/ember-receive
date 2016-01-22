@@ -18,11 +18,10 @@ Let me show you with a contrived example:
 <!-- app/users/index/template.hbs -->
 
 {{#user-list filter=(route-action 'filterBy' 'type' 'admin') users=model as |users|}}
-  <!--
-    You must use `result` here, or somehow pass it elsewhere.
-    ember-receive to the rescue!
-  -->
   {{pass-to 'dash-widgets' users}}
+  {{#each users as |user|}}
+    <!-- something here -->
+  {{/each}}
 {{/user-list}}
 ```
 
