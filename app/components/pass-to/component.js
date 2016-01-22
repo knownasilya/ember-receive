@@ -1,0 +1,1 @@
+export { default } from 'ember-receive/components/pass-to/component';

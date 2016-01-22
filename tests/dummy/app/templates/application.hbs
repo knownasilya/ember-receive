@@ -1,3 +1,18 @@
 <h2 id="title">Welcome to Ember</h2>
 
 {{outlet}}
+
+Passed Here:<br/>
+<input type="text" oninput={{action (mut hello) value="currentTarget.value"}}>
+{{pass-to 'area51' (hash test=(component 'my-comp' first=hello))}}
+
+<hr/>
+
+Received Here:<br/>
+{{#receive-for 'area51' as |data send|}}
+  {{#if data.test}}
+    {{#send.back}}
+      {{data.test last='Dole'}}
+    {{/send.back}}
+  {{/if}}
+{{/receive-for}}
