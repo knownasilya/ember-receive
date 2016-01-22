@@ -1,26 +1,46 @@
-# Ember-receive
+# ember-receive
 
-This README outlines the details of collaborating on this Ember addon.
+There are many uses for `ember-receive`, but one of the main uses is to unblock blocked components. Let me show you.
 
-## Installation
+```hbs
+<!-- app/components/sidebar/template.hbs -->
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+{{#some-component data=model as |result|}}
+  <!-- You must use `result` here, or somehow pass it elsewhere -->
+  <! -- ember-receive to the rescue! -->
+  {{pass-to 'outside-area' result}}
+{{/some-component}}
+```
 
-## Running
+In another place:
+```hbs
+<!-- app/application/template.hbs -->
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+{{#receive-for 'outside-area' as |result send|}}
+  <!-- do something with result -->
+{{/receive-for}}
+```
 
-## Running Tests
+Check out the demo, `npm start` and `http://localhost:4200`.
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+## Advanced
 
-## Building
+```hbs
+{{pass-to 'outside-area' (hash test=(component 'some-thing' name=name))}}
+```
 
-* `ember build`
+And consume:
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+```hbs
+{{#receive-for 'outside-area' as |ui send|}}
+  <!-- check is necessary or you get unknown helper error -->
+  {{#if ui.test}}
+    <!-- everything inside will be rendered where the data came from -->
+    {{#send.back}}
+      {{#ui.test something=data}}
+        Block data
+        {{different-component}}
+      {{/ui.test}}
+    {{/send.back}}
+  {{/if}}
+{{/receive-for}}
